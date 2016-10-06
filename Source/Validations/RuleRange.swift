@@ -30,7 +30,7 @@ public struct RuleGreaterThan<T: Comparable>: RuleType {
     
     public var id: String?
     public var validationError: ValidationError
-    9
+   
     public init(min: T){
         self.min = min
         self.validationError = ValidationError(msg: "Field value must be greater than \(min)")
