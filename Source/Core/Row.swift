@@ -36,6 +36,10 @@ public class RowOf<T: Equatable>: BaseRow {
                 delegate.rowValueHasBeenChanged(self, oldValue: oldValue, newValue: value)
                 callbackOnChange?()
             }
+            if validationOptions.contains(.validatesOnChange) || (wasBlurred && validationOptions.contains(.validatesOnChangeAfterBlurred)) || !isValid   {
+                validate()
+                updateCell()
+            }
             guard let t = tag else { return }
             form.tagToValues[t] = value as? AnyObject ?? NSNull()
             if let rowObservers = form.rowObservers[t]?[.Hidden]{
@@ -70,6 +74,37 @@ public class RowOf<T: Equatable>: BaseRow {
     
     public required init(tag: String?){
         super.init(tag: tag)
+    }
+    
+    internal var rules: [ValidationRuleHelper<T>] = []
+    
+    public override func validate() -> [ValidationError] {
+        validationErrors = rules.flatMap { $0.validateFn(value) }
+        return validationErrors
+    }
+    
+    public func add<Rule: RuleType where T == Rule.RowValueType>(rule: Rule){
+    let validFn: ((T?) -> ValidationError?) = { (val: T?) in
+    return rule.isValid(val)
+    }
+    rules.append(ValidationRuleHelper(validateFn: validFn, rule: rule))
+    }
+    
+    public func add(ruleSet: RuleSet<T>){
+        rules.appendContentsOf(ruleSet.rules)
+    }
+    
+    public func remove(identifier: String) {
+        if let index = rules.indexOf({ (validationRuleHelper) -> Bool in
+            return validationRuleHelper.rule.id == identifier
+        }){
+            rules.removeAtIndex(index)
+        }
+    }
+    
+    public func removeAllRules() {
+        validationErrors.removeAll()
+        rules.removeAll()
     }
 }
 

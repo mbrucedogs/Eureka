@@ -34,8 +34,24 @@ public class BaseRow : BaseRowType {
     var callbackOnCellUnHighlight: (()->Void)?
     var callbackOnExpandInlineRow: Any?
     var callbackOnCollapseInlineRow: Any?
+    var callbackOnCellHighlightChanged: (()-> Void)?
+    var callbackOnRowValidationChanged: (() -> Void)?
     var _inlineRow: BaseRow?
     
+    public var validationOptions: ValidationOptions = .validatesOnBlur
+    // validation state
+    public internal(set) var validationErrors = [ValidationError]() {
+        didSet {
+            guard validationErrors != oldValue else { return }
+            RowDefaults.onRowValidationChanged["\(self)"]?(baseCell, self)
+            callbackOnRowValidationChanged?()
+        }
+    }
+    public internal(set) var wasBlurred = false
+    public internal(set) var wasChanged = false
+   
+    public var isValid: Bool { return validationErrors.isEmpty }
+
     /// The title will be displayed in the textLabel of the row.
     public var title: String?
     
@@ -52,6 +68,10 @@ public class BaseRow : BaseRowType {
     public var baseValue: Any? {
         set {}
         get { return nil }
+    }
+    
+    public func validate() -> [ValidationError] {
+        return []
     }
     
     public static var estimatedRowHeight: CGFloat = 44.0

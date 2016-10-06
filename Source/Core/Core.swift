@@ -33,11 +33,13 @@ internal class RowDefaults {
     static var onCellHighlight = Dictionary<String, (BaseCell, BaseRow) -> Void>()
     static var onCellUnHighlight = Dictionary<String, (BaseCell, BaseRow) -> Void>()
     static var rowInitialization = Dictionary<String, BaseRow -> Void>()
+    static var onRowValidationChanged = Dictionary<String, (BaseCell, BaseRow) -> Void>()
     static var rawCellUpdate = Dictionary<String, Any>()
     static var rawCellSetup = Dictionary<String, Any>()
     static var rawOnCellHighlight = Dictionary<String, Any>()
     static var rawOnCellUnHighlight = Dictionary<String, Any>()
     static var rawRowInitialization = Dictionary<String, Any>()
+    static var rawOnRowValidationChanged = Dictionary<String, Any>()
 }
 
 
@@ -568,7 +570,13 @@ public class FormViewController : UIViewController, FormViewControllerProtocol {
      Called when a cell resigns first responder
      */
     public final func endEditing<T:Equatable>(cell: Cell<T>) {
+        cell.row.wasBlurred = true
         cell.row.unhighlightCell()
+        cell.row.updateCell()
+        cell.row.callbackOnCellHighlightChanged?()
+        if cell.row.validationOptions.contains(.validatesOnBlur) ||  cell.row.validationOptions.contains(.validatesOnChangeAfterBlurred) {
+            cell.row.validate()
+        }
     }
     
     /**

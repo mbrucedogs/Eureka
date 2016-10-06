@@ -71,6 +71,14 @@
 		28EEC02F1C7E49BF00300699 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CE101C7E01EE0002982F /* SelectorViewController.swift */; };
 		28EEC0321C7E64A400300699 /* DatePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CDFC1C7DF9430002982F /* DatePickerRow.swift */; };
 		28EEC0331C7E64AB00300699 /* PopoverSelectorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2859CE1D1C7E08300002982F /* PopoverSelectorRow.swift */; };
+		40050CA41DA5D2490077E581 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CA31DA5D2490077E581 /* Validation.swift */; };
+		40050CBC1DA5D3990077E581 /* RuleClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CB51DA5D3990077E581 /* RuleClosure.swift */; };
+		40050CBD1DA5D3990077E581 /* RuleEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CB61DA5D3990077E581 /* RuleEmail.swift */; };
+		40050CBE1DA5D3990077E581 /* RuleLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CB71DA5D3990077E581 /* RuleLength.swift */; };
+		40050CBF1DA5D3990077E581 /* RuleRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CB81DA5D3990077E581 /* RuleRange.swift */; };
+		40050CC01DA5D3990077E581 /* RuleRegExp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CB91DA5D3990077E581 /* RuleRegExp.swift */; };
+		40050CC11DA5D3990077E581 /* RuleRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CBA1DA5D3990077E581 /* RuleRequired.swift */; };
+		40050CC21DA5D3990077E581 /* RuleURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40050CBB1DA5D3990077E581 /* RuleURL.swift */; };
 		49ADC7F91C8A83240073952B /* StepperRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ADC7F81C8A83240073952B /* StepperRow.swift */; };
 		51729DF61B9A4F5E004A00EB /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51729DEB1B9A4F5E004A00EB /* Eureka.framework */; };
 		51729E671B9A5FA5004A00EB /* Eureka.h in Headers */ = {isa = PBXBuildFile; fileRef = 51729E661B9A5FA5004A00EB /* Eureka.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +160,14 @@
 		28EEBFF71C7E241200300699 /* SelectableRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableRowType.swift; sourceTree = "<group>"; };
 		28EEBFFA1C7E25C500300699 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		28EEBFFC1C7E25F100300699 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		40050CA31DA5D2490077E581 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		40050CB51DA5D3990077E581 /* RuleClosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleClosure.swift; sourceTree = "<group>"; };
+		40050CB61DA5D3990077E581 /* RuleEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleEmail.swift; sourceTree = "<group>"; };
+		40050CB71DA5D3990077E581 /* RuleLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleLength.swift; sourceTree = "<group>"; };
+		40050CB81DA5D3990077E581 /* RuleRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleRange.swift; sourceTree = "<group>"; };
+		40050CB91DA5D3990077E581 /* RuleRegExp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleRegExp.swift; sourceTree = "<group>"; };
+		40050CBA1DA5D3990077E581 /* RuleRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleRequired.swift; sourceTree = "<group>"; };
+		40050CBB1DA5D3990077E581 /* RuleURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleURL.swift; sourceTree = "<group>"; };
 		49ADC7F81C8A83240073952B /* StepperRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperRow.swift; sourceTree = "<group>"; };
 		51729DEB1B9A4F5E004A00EB /* Eureka.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Eureka.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51729DF01B9A4F5E004A00EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Source/Info.plist; sourceTree = "<group>"; };
@@ -201,6 +217,7 @@
 				28EEBFF71C7E241200300699 /* SelectableRowType.swift */,
 				2859CDBF1C7D138D0002982F /* Section.swift */,
 				2859CE231C7E141B0002982F /* SelectableSection.swift */,
+				40050CA31DA5D2490077E581 /* Validation.swift */,
 			);
 			name = Core;
 			path = Source/Core;
@@ -273,6 +290,21 @@
 			name = SelectableRows;
 			sourceTree = "<group>";
 		};
+		40050CB41DA5D3990077E581 /* Validations */ = {
+			isa = PBXGroup;
+			children = (
+				40050CB51DA5D3990077E581 /* RuleClosure.swift */,
+				40050CB61DA5D3990077E581 /* RuleEmail.swift */,
+				40050CB71DA5D3990077E581 /* RuleLength.swift */,
+				40050CB81DA5D3990077E581 /* RuleRange.swift */,
+				40050CB91DA5D3990077E581 /* RuleRegExp.swift */,
+				40050CBA1DA5D3990077E581 /* RuleRequired.swift */,
+				40050CBB1DA5D3990077E581 /* RuleURL.swift */,
+			);
+			name = Validations;
+			path = Source/Validations;
+			sourceTree = SOURCE_ROOT;
+		};
 		51729DE11B9A4F5E004A00EB = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +328,7 @@
 			children = (
 				2859CD901C7CF1FD0002982F /* Core */,
 				2859CD971C7CF2020002982F /* Rows */,
+				40050CB41DA5D3990077E581 /* Validations */,
 				8690E4BC1CFDE02A004CDB1C /* Resources */,
 				51729E661B9A5FA5004A00EB /* Eureka.h */,
 				51729DF01B9A4F5E004A00EB /* Info.plist */,
@@ -447,14 +480,17 @@
 			files = (
 				28EEC0251C7E3B2200300699 /* PickerInlineRow.swift in Sources */,
 				28EEC0331C7E64AB00300699 /* PopoverSelectorRow.swift in Sources */,
+				40050CC11DA5D3990077E581 /* RuleRequired.swift in Sources */,
 				28EEBFF81C7E241200300699 /* SelectableRowType.swift in Sources */,
 				28EEC0201C7E3AD200300699 /* SegmentedRow.swift in Sources */,
+				40050CA41DA5D2490077E581 /* Validation.swift in Sources */,
 				28EEC01F1C7E3AC800300699 /* LabelRow.swift in Sources */,
 				28EEC0191C7E3A3D00300699 /* SelectorAlertController.swift in Sources */,
 				28EEBFEE1C7E231C00300699 /* RowControllerType.swift in Sources */,
 				28EE46A91C7F685900EFF4A2 /* PushRow.swift in Sources */,
 				28EEC00F1C7E398D00300699 /* FieldRow.swift in Sources */,
 				28EEC02F1C7E49BF00300699 /* SelectorViewController.swift in Sources */,
+				40050CBF1DA5D3990077E581 /* RuleRange.swift in Sources */,
 				28EEC0031C7E390300300699 /* DecimalFormatter.swift in Sources */,
 				283D16D61C80B29A00DD6347 /* ImageRow.swift in Sources */,
 				2859CD951C7CF1FD0002982F /* Core.swift in Sources */,
@@ -473,8 +509,11 @@
 				2859CD961C7CF1FD0002982F /* Helpers.swift in Sources */,
 				28EEBFF21C7E23FA00300699 /* RowType.swift in Sources */,
 				28EEC0101C7E399500300699 /* DateInlineFieldRow.swift in Sources */,
+				40050CBE1DA5D3990077E581 /* RuleLength.swift in Sources */,
 				2859CDC61C7D1A2E0002982F /* NavigationAccessoryView.swift in Sources */,
 				28EEC01E1C7E3A9000300699 /* PostalAddressRow.swift in Sources */,
+				40050CBC1DA5D3990077E581 /* RuleClosure.swift in Sources */,
+				40050CC21DA5D3990077E581 /* RuleURL.swift in Sources */,
 				283D16D71C80B2AD00DD6347 /* ImagePickerController.swift in Sources */,
 				49ADC7F91C8A83240073952B /* StepperRow.swift in Sources */,
 				28EE46AC1C7F712300EFF4A2 /* DateInlineRow.swift in Sources */,
@@ -489,10 +528,12 @@
 				28EEC0021C7E37BD00300699 /* ButtonRow.swift in Sources */,
 				28EE46A81C7F5D5200EFF4A2 /* SelectableSection.swift in Sources */,
 				28EEBFF61C7E240B00300699 /* InlineRowType.swift in Sources */,
+				40050CC01DA5D3990077E581 /* RuleRegExp.swift in Sources */,
 				28EEBFFB1C7E25C500300699 /* Operators.swift in Sources */,
 				28DB37301CE4F864009E46BA /* Protocols.swift in Sources */,
 				2859CDC01C7D138D0002982F /* Section.swift in Sources */,
 				28EEC0151C7E39C100300699 /* DateRow.swift in Sources */,
+				40050CBD1DA5D3990077E581 /* RuleEmail.swift in Sources */,
 				2859CDE91C7DD78E0002982F /* BaseRow.swift in Sources */,
 				28EEBFF01C7E23F400300699 /* Row.swift in Sources */,
 				28EEC0121C7E399500300699 /* GenericMultipleSelectorRow.swift in Sources */,

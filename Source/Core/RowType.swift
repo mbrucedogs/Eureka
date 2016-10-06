@@ -68,6 +68,10 @@ public protocol BaseRowType: Taggable {
      Method called when the cell belonging to this row was selected. Must call the corresponding method in its cell.
      */
     func didSelect()
+    /**
+     Typically we don't need to explicitly call this method since it is called by Eureka framework. It will validates the row if you invoke it.
+     */
+    func validate() -> [ValidationError]
 }
 
 public protocol TypedRowType: BaseRowType {
@@ -80,6 +84,9 @@ public protocol TypedRowType: BaseRowType {
     
     /// The typed value this row stores.
     var value : Self.Value? { get set }
+    
+    func add<Rule: RuleType where Rule.RowValueType == Cell.Value>(rule: Rule)
+    func remove(ruleWithIdentifier: String)
 }
 
 /**
@@ -194,6 +201,25 @@ extension RowType where Self: TypedRowType, Self: BaseRow, Self.Cell.Value == Se
         get { return RowDefaults.rawRowInitialization["\(self)"] as? (Self -> ()) }
     }
     
+    /// The default block executed to initialize a row. Applies to every row of this type.
+    public static var defaultOnRowValidationChanged:((Cell, Self) -> ())? {
+        set {
+            if let newValue = newValue {
+                let wrapper : (BaseCell, BaseRow) -> Void = { (baseCell: BaseCell, baseRow: BaseRow) in
+                    newValue(baseCell as! Cell, baseRow as! Self)
+                }
+                RowDefaults.onRowValidationChanged["\(self)"] = wrapper
+                RowDefaults.rawOnRowValidationChanged["\(self)"] = newValue
+            }
+            else {
+                RowDefaults.onRowValidationChanged["\(self)"] = nil
+                RowDefaults.rawOnRowValidationChanged["\(self)"] = nil
+            }
+        }
+        get{ return RowDefaults.rawOnRowValidationChanged["\(self)"] as? ((Cell, Self) -> ()) }
+    }
+
+    
     /**
      Sets a block to be called when the value of this row changes.
      
@@ -210,7 +236,7 @@ extension RowType where Self: TypedRowType, Self: BaseRow, Self.Cell.Value == Se
      - returns: this row
      */
     public func cellUpdate(callback: ((cell: Cell, row: Self) -> ())) -> Self{
-        callbackCellUpdate = { [unowned self] in  callback(cell: self.cell, row: self) }
+        callbackCellUpdate = { [unowned self    ] in  callback(cell: self.cell, row: self) }
         return self
     }
     
@@ -251,6 +277,11 @@ extension RowType where Self: TypedRowType, Self: BaseRow, Self.Cell.Value == Se
      */
     public func onCellUnHighlight(callback: (cell: Cell, row: Self)->()) -> Self {
         callbackOnCellUnHighlight = { [unowned self] in  callback(cell: self.cell, row: self) }
+        return self
+    }
+    
+    public func onRowValidationChanged(callback: (cell: Cell, row: Self)->()) -> Self {
+        callbackOnRowValidationChanged = { [unowned self] in  callback(cell: self.cell, row: self) }
         return self
     }
 }
